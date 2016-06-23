@@ -18,6 +18,8 @@ if __name__ == '__main__':
         '-tn', "--number_of_traces", dest="number_of_traces", default=None, type=int)
     parser.add_argument(
         '-c', "--cores", dest="number_of_cores", default=4, type=int)
+    parser.add_argument(
+        '-su', "--single_unit", dest="single_unit", default=None, type=int)
 
     args = parser.parse_args()
     if not args.verbosity:
@@ -27,4 +29,10 @@ if __name__ == '__main__':
         number_of_traces = len(glob(args.trace_input + '*.bin'))
     else:
         number_of_traces = args.number_of_traces
-    DPAScream(args.trace_input, args.trace_name_prefix, number_of_traces, args.number_of_cores, args.value_file).run()
+    if (args.single_unit is None):
+        DPAScream(args.trace_input, args.trace_name_prefix, number_of_traces, args.number_of_cores,
+                  args.value_file).run()
+    else:
+        assert(args.single_unit > 0 and args.single_unit < BYTES_IN_PLAINTEXT+1)
+        DPAScream(args.trace_input, args.trace_name_prefix, number_of_traces, args.number_of_cores,
+                  args.value_file).run_single_unit(args.single_unit)
