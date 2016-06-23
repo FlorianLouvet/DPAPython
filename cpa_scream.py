@@ -182,6 +182,6 @@ if __name__ == '__main__':
         number_of_traces = len(glob(args.input + '*.bin'))
     else:
         number_of_traces = args.number_of_traces
-    traces = read_traces(number_of_traces, args.trace_input, args.name_prefix, args.cores)
+    traces = read_traces(args.trace_input, args.name_prefix, number_of_traces, args.cores)
     main(args.init_filename, traces,
          args.attacked_byte, args.correlation_output)

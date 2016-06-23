@@ -51,4 +51,5 @@ class DPAUnitAttcack(metaclass=ABCMeta):
     def run(self):
         self.compute_intermediate_values_matrix()
         self.simulate_power_consumption()
-        self.compute_correlation_matrix()
+        correlation_matrix = self.compute_correlation_matrix()
+        return  np.argmax(correlation_matrix) // correlation_matrix.shape[1]

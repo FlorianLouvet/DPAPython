@@ -26,8 +26,7 @@ class ByteAttackThread(Thread):
 
 def main(number_of_traces, traces_input_file_format, trace_name_prefix, value_file, cores):
     print("KEY USED FOR TRACES: {}".format(read_byte_key(DEFAULT_KEY_INPUT)))
-    traces = read_traces(
-        number_of_traces, traces_input_file_format, trace_name_prefix, cores)
+    traces = read_traces(traces_input_file_format, trace_name_prefix, number_of_traces, cores)
     keys = np.reshape(np.zeros(BYTES_IN_PLAINTEXT, dtype=np.uint8), (BYTES_IN_PLAINTEXT, 1))
     threads = []
     for i in range(BYTES_IN_PLAINTEXT):
