@@ -1,0 +1,1 @@
+This is some ongoing project relating to DPA attacks in Python
