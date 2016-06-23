@@ -47,6 +47,7 @@ def read_traces(directory, name_prefix, number, cpu_cores):
         threads.append(t)
     for t in threads:
         t.join()
-    traces = np.vstack((np.vstack((np.vstack((threads[0].result(), threads[
-        1].result())), threads[2].result())), threads[3].result()))
+    traces = threads[0].result()
+    for t in threads[1:]:
+        traces = np.vstack((traces, t.result()))
     return traces

@@ -56,12 +56,13 @@ class DPACommon(metaclass=ABCMeta):
     @abstractmethod
     def run(self):
         keys = np.reshape(np.zeros(self.units_number, dtype=np.uint8), (self.units_number, 1))
-        threads = []
-        for i in range(self.units_number):
-            t = self.type(self.values, self.traces, i + 1)
-            t.start()
-            threads.append(t)
-        for i, t in enumerate(threads):
-            t.join()
-            keys[i] = t.result()
+        for j in range(self.units_number//self.cpu_cores):
+            threads = []
+            for i in range(self.cpu_cores):
+                t = self.type(self.values, self.traces, (j*self.cpu_cores) + i + 1)
+                t.start()
+                threads.append(t)
+            for i, t in enumerate(threads):
+                t.join()
+                keys[(j*self.cpu_cores) + i] = t.result()
         print(keys)

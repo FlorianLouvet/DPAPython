@@ -29,6 +29,7 @@ class ScreamUnitAttackThread(UnitAttackThread):
 
     def run(self):
         super(ScreamUnitAttackThread, self).run()
+        print("Running attack on unit: {}".format(self.attacked_unit))
         self.key = ScreamUnitAttack(self.traces, self.unit_values, self.unit_keys, self.unit_tweaks).run()
 
 
@@ -36,6 +37,7 @@ class DPAScream(DPACommon):
     def __init__(self, traces_directory, traces_name_prefix, traces_number, cpu_cores, values_filename):
         super(DPAScream, self).__init__(traces_directory, traces_name_prefix, traces_number, cpu_cores, values_filename)
         self.type = ScreamUnitAttackThread
+        self.units_number = int(BYTES_IN_PLAINTEXT)
 
     def run(self):
         super(DPAScream, self).run()
