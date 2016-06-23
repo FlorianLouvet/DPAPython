@@ -1,6 +1,5 @@
 from abc import ABCMeta, abstractmethod
 from threading import Thread
-from scream_unit_attack import ScreamUnitAttack
 from trace_reading import read_traces
 import numpy as np
 
@@ -32,25 +31,10 @@ class UnitAttackThread(Thread, metaclass=ABCMeta):
         self.extract_unit_values()
         self.compute_unit_tweaks()
         self.compute_unit_keys()
-        self.key = ScreamUnitAttack(self.traces, self.unit_values, self.unit_keys, self.unit_tweaks).run()
 
     def result(self):
         assert (self.key is not None)
         return self.key
-
-
-class ScreamUnitAttackThread(UnitAttackThread):
-    def __init__(self, values, traces, attacked_unit):
-        super(ScreamUnitAttackThread, self).__init__(values, traces, attacked_unit)
-
-    def extract_unit_values(self):
-        pass
-
-    def compute_unit_tweaks(self):
-        pass
-
-    def compute_unit_keys(self):
-        pass
 
 
 class DPACommon(metaclass=ABCMeta):
@@ -60,6 +44,7 @@ class DPACommon(metaclass=ABCMeta):
         self.traces = read_traces(traces_directory, traces_name_prefix, traces_number, cpu_cores)
         self.values = self.read_values(values_filename)
         self.units_number = None
+        self.type = None
 
     def read_values(self, filename):
         with open(filename) as opened_file:
@@ -68,11 +53,12 @@ class DPACommon(metaclass=ABCMeta):
                 lines += i.split('\r')
         return lines
 
+    @abstractmethod
     def run(self):
         keys = np.reshape(np.zeros(self.units_number, dtype=np.uint8), (self.units_number, 1))
         threads = []
         for i in range(self.units_number):
-            t = UnitAttackThread(self.values, self.traces, i + 1)
+            t = self.type(self.values, self.traces, i + 1)
             t.start()
             threads.append(t)
         for i, t in enumerate(threads):
