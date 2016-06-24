@@ -1,6 +1,6 @@
-from dpa_common import UnitAttackThread, DPACommon
-from MACRO import *
-from scream_unit_attack import *
+from CommonDPA.dpa_common import UnitAttackThread, DPACommon
+from ScreamDPA.parameters import *
+from ScreamDPA.scream_unit_attack import *
 
 
 class ScreamUnitAttackThread(UnitAttackThread):

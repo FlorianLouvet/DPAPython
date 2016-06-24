@@ -1,6 +1,7 @@
-from binary_trace_processing import read_trace_from_bin
 from threading import Thread
 import numpy as np
+
+from CommonDPA.binary_trace_processing import read_trace_from_bin
 
 
 class TraceThread(Thread):

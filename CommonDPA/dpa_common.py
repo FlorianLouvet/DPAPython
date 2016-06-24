@@ -1,7 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from threading import Thread
-from trace_reading import read_traces
 import numpy as np
+
+from CommonDPA.trace_reading import read_traces
 
 
 class UnitAttackThread(Thread, metaclass=ABCMeta):

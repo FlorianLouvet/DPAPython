@@ -2,7 +2,6 @@ DEFAULT_TRACES_INPUT = './collect/traces/'
 DEFAULT_TRACE_NAME_PREFIX = 'wave'
 DEFAULT_VALUES_INPUT = './collect/values.csv'
 DEFAULT_KEY_INPUT = './collect/key.csv'
-DEFAULT_CORRELATION_OUTPUT = 'correlation_matrix'
 
 BYTE = 8
 PLAINTEXT_LENGTH = 128

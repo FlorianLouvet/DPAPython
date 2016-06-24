@@ -1,8 +1,9 @@
 import argparse
 import sys
 from glob import glob
-from MACRO import *
-from dpa_scream import DPAScream
+
+from ScreamDPA.dpa_scream import DPAScream
+from ScreamDPA.parameters import *
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

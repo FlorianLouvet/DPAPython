@@ -1,6 +1,4 @@
-import argparse
-from MACRO import *
-from dpa_unit_attack import *
+from CommonDPA.dpa_unit_attack import *
 
 
 class ScreamUnitAttack(DPAUnitAttcack):
