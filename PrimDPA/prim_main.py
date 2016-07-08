@@ -2,8 +2,8 @@ import argparse
 import sys
 from glob import glob
 
-from ScreamDPA.dpa_scream import DPAScream
-from ScreamDPA.parameters import *
+from PrimDPA.dpa_prim import DPAPrim
+from PrimDPA.parameters import *
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -30,10 +30,10 @@ if __name__ == '__main__':
         number_of_traces = len(glob(args.trace_input + '*.bin'))
     else:
         number_of_traces = args.number_of_traces
-    if (args.single_unit is None):
-        DPAScream(args.trace_input, args.trace_name_prefix, number_of_traces, args.number_of_cores,
-                  args.value_file).run()
+    if args.single_unit is None:
+        DPAPrim(args.trace_input, args.trace_name_prefix, number_of_traces, args.number_of_cores,
+                args.value_file).run()
     else:
-        assert(args.single_unit > 0 and args.single_unit < BYTES_IN_PLAINTEXT+1)
-        DPAScream(args.trace_input, args.trace_name_prefix, number_of_traces, args.number_of_cores,
-                  args.value_file).run_single_unit(args.single_unit)
+        assert (0 < args.single_unit < ELEMENTS_IN_BLOCK + 1)
+        DPAPrim(args.trace_input, args.trace_name_prefix, number_of_traces, args.number_of_cores,
+                args.value_file).run_single_unit(args.single_unit)

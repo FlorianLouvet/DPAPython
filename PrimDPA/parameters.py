@@ -1,0 +1,8 @@
+DEFAULT_TRACES_INPUT = '../Collect_Primate/traces/'
+DEFAULT_TRACE_NAME_PREFIX = 'wave'
+DEFAULT_VALUES_INPUT = '../Collect_Primate/values.csv'
+DEFAULT_KEY_INPUT = '../Collect_Primate/key.csv'
+
+ELEMENT = 5
+BLOCK_LENGTH = 40
+ELEMENTS_IN_BLOCK = BLOCK_LENGTH/ELEMENT
