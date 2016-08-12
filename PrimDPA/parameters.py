@@ -1,7 +1,7 @@
-DEFAULT_TRACES_INPUT = '../Collect_Primate/traces/'
+DEFAULT_TRACES_INPUT = '../Collect_Scream/traces/'
 DEFAULT_TRACE_NAME_PREFIX = 'wave'
-DEFAULT_VALUES_INPUT = '../Collect_Primate/values.csv'
-DEFAULT_KEY_INPUT = '../Collect_Primate/key.csv'
+DEFAULT_VALUES_INPUT = '../Collect_Scream/values.csv'
+DEFAULT_KEY_INPUT = '../Collect_Scream/key.csv'
 
 ELEMENT = 5
 BLOCK_LENGTH = 40

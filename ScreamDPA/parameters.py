@@ -1,7 +1,7 @@
-DEFAULT_TRACES_INPUT = '../Collect_Scream/traces/'
+DEFAULT_TRACES_INPUT = '../../scream2000/traces/'
 DEFAULT_TRACE_NAME_PREFIX = 'wave'
-DEFAULT_VALUES_INPUT = '../Collect_Scream/values.csv'
-DEFAULT_KEY_INPUT = '../Collect_Scream/key.csv'
+DEFAULT_VALUES_INPUT = '../../scream2000/values.csv'
+DEFAULT_KEY_INPUT = '../../scream2000/key.csv'
 
 BYTE = 8
 PLAINTEXT_LENGTH = 128

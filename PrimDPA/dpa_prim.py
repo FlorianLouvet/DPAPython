@@ -8,7 +8,7 @@ class PrimUnitAttackThread(UnitAttackThread):
         super(PrimUnitAttackThread, self).__init__(values, traces, attacked_unit)
 
     def extract_unit_values(self):
-        self.unit_values = np.array([0])
+        self.unit_values = np.ones(len(self.values))
 
     def compute_unit_tweaks(self):
         pass

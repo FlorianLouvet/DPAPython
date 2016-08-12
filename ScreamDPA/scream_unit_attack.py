@@ -34,7 +34,9 @@ class ScreamUnitAttack(DPAUnitAttcack):
             (np.size(self.values), np.size(self.keys)), dtype=np.int)
         it = np.nditer(matrix, flags=['multi_index'], op_flags=['writeonly'])
         while not it.finished:
-            it[0] = ScreamUnitAttack.SBOX[self.values[it.multi_index[0]] ^ self.keys[
-                it.multi_index[1]] ^ self.tweaks[it.multi_index[0]]]
+            it[0] = self.values[it.multi_index[0]] ^ self.keys[
+                it.multi_index[1]] ^ self.tweaks[it.multi_index[0]]
+            #it[0] = ScreamUnitAttack.SBOX[self.values[it.multi_index[0]] ^ self.keys[
+                #it.multi_index[1]] ^ self.tweaks[it.multi_index[0]]]
             it.iternext()
         self.intermediate_values_matrix = matrix

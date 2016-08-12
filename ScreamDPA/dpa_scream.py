@@ -38,6 +38,18 @@ class DPAScream(DPACommon):
         super(DPAScream, self).__init__(traces_directory, traces_name_prefix, traces_number, cpu_cores, values_filename)
         self.type = ScreamUnitAttackThread
         self.units_number = int(BYTES_IN_PLAINTEXT)
+        self.read_key()
 
     def run(self):
-        super(DPAScream, self).run()
+        print(super(DPAScream, self).run())
+        print(self.o_key)
+
+    def read_key(self):
+        with open(DEFAULT_KEY_INPUT) as opened_file:
+            key_string = opened_file.readline()
+            key = []
+            for i in range(1, int(BYTES_IN_PLAINTEXT)+1):
+                attacked_byte = i
+                key += [int(format(int(key_string, 16), '#0130b')[2:][
+                            ((attacked_byte - 1) % BYTE)::BYTE][::-1][(attacked_byte - 1) // 8::2], 2)]
+        self.o_key = np.array(key)

@@ -46,6 +46,7 @@ class DPACommon(metaclass=ABCMeta):
         self.values = self.read_values(values_filename)
         self.units_number = None
         self.type = None
+        self.o_key = None
 
     def read_values(self, filename):
         with open(filename) as opened_file:
@@ -66,10 +67,14 @@ class DPACommon(metaclass=ABCMeta):
             for i, t in enumerate(threads):
                 t.join()
                 keys[(j * self.cpu_cores) + i] = t.result()
-        print(keys)
+        return keys
 
     def run_single_unit(self, attacked_unit):
         t = self.type(self.values, self.traces, attacked_unit)
         t.start()
         t.join()
         print(t.result())
+
+    @abstractmethod
+    def read_key(self):
+        pass
